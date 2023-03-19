@@ -1,18 +1,18 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-hd-wallet';
+import { createHDWallet, Wallet } from 'react-native-hd-wallet';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [wallet, setWallet] = React.useState<Wallet>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    createHDWallet(0, 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat', 'password').then(setWallet);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Wallet: {JSON.stringify(wallet, null, 2)}</Text>
     </View>
   );
 }
