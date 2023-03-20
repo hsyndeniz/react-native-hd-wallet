@@ -1,4 +1,3 @@
-import 'react-native-get-random-values';
 import { NativeModules, Platform } from 'react-native';
 import { hdkey } from 'ethereumjs-wallet';
 import * as ed25519 from 'ed25519-hd-key';
@@ -60,12 +59,14 @@ export async function createHDWallet(index: number = 0, mnemonic?: string, passw
     }
 
     const seed = bip39.mnemonicToSeedSync(mnemonic);
+
     const hd_wallet = hdkey.fromMasterSeed(seed);
     const wallet = hd_wallet.derivePath(eth_derivation_path).getWallet();
 
-    const address = wallet.getAddressString();
-    const publicKey = wallet.getPublicKeyString();
-    const privateKey = wallet.getPrivateKeyString();
+    const ethereum = {
+      address: wallet.getAddressString(),
+      privateKey: wallet.getPrivateKeyString(),
+    };
 
     let derivedPrivateKey = ed25519.derivePath(sol_derivation_path, seed.toString('hex'));
     let keyPair = nacl.sign.keyPair.fromSeed(derivedPrivateKey.key);
@@ -87,9 +88,7 @@ export async function createHDWallet(index: number = 0, mnemonic?: string, passw
 
     return {
       mnemonic,
-      address,
-      publicKey,
-      privateKey,
+      ethereum,
       solana,
       tezos,
     };
@@ -100,9 +99,10 @@ export async function createHDWallet(index: number = 0, mnemonic?: string, passw
 
 export type Wallet = {
   mnemonic: string;
-  address: string;
-  publicKey: string;
-  privateKey: string;
+  ethereum: {
+    address: string;
+    privateKey: string;
+  };
   solana: {
     publicKey: string;
     secretKey: string;

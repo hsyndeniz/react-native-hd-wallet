@@ -15,9 +15,7 @@ test('should return false if mnemonic is invalid', () => {
 test('should return a HD wallet', async () => {
   expect(await createHDWallet()).toMatchObject<Wallet>({
     mnemonic: expect.any(String),
-    address: expect.any(String),
-    publicKey: expect.any(String),
-    privateKey: expect.any(String),
+    ethereum: expect.any(Object),
     solana: expect.any(Object),
     tezos: expect.any(Object),
   });
@@ -26,9 +24,7 @@ test('should return a HD wallet', async () => {
 test('should return a HD wallet with a specific index', async () => {
   expect(await createHDWallet(1)).toMatchObject<Wallet>({
     mnemonic: expect.any(String),
-    address: expect.any(String),
-    publicKey: expect.any(String),
-    privateKey: expect.any(String),
+    ethereum: expect.any(Object),
     solana: expect.any(Object),
     tezos: expect.any(Object),
   });
@@ -37,9 +33,7 @@ test('should return a HD wallet with a specific index', async () => {
 test('should return a HD wallet with a specific mnemonic', async () => {
   expect(await createHDWallet(0, 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat')).toMatchObject<Wallet>({
     mnemonic: expect.any(String),
-    address: expect.any(String),
-    publicKey: expect.any(String),
-    privateKey: expect.any(String),
+    ethereum: expect.any(Object),
     solana: expect.any(Object),
     tezos: expect.any(Object),
   });
@@ -48,9 +42,7 @@ test('should return a HD wallet with a specific mnemonic', async () => {
 test('should return a HD wallet with a specific mnemonic and password', async () => {
   expect(await createHDWallet(0, 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat', 'password')).toMatchObject<Wallet>({
     mnemonic: expect.any(String),
-    address: expect.any(String),
-    publicKey: expect.any(String),
-    privateKey: expect.any(String),
+    ethereum: expect.any(Object),
     solana: expect.any(Object),
     tezos: expect.any(Object),
   });

@@ -1,6 +1,6 @@
 # react-native-hd-wallet
 
-hierarchical-deterministic (HD) wallet generator for react native.
+Hierarchical-deterministic (HD) wallet generator for react native.
 
 ## Installation
 
@@ -18,7 +18,6 @@ import { createHDWallet } from 'react-native-hd-wallet';
 const wallet = await createHDWallet();
 
 // or with account index and mnemonic
-
 const wallet = await createHDWallet(0, 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat'); 
 
 ```
